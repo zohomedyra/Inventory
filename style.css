@@ -1,0 +1,97 @@
+:root{font-family:-apple-system,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:16px;color:#111;background:#fff}
+header{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+h1{margin:0;font-size:20px}
+.muted{color:#6b7280;font-size:12px}
+.small{font-size:12px}
+
+.panel{border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#fff;margin:12px 0}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.file{display:inline-flex;align-items:center;gap:8px;border:1px solid #e5e7eb;border-radius:8px;padding:8px 10px;background:#fff}
+select,input[type="search"],input[type="text"],input[type="number"]{padding:8px;border:1px solid #e5e7eb;border-radius:8px;background:#fff}
+
+/* KPI cards */
+.cards{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.card{border:1px solid #e5e7eb;border-radius:12px;padding:12px 14px;min-width:180px;background:#fff;position:relative;text-align:center}
+.card .title{font-size:13px;font-weight:600;margin-bottom:8px}
+.card::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:6px;border-radius:6px;background:var(--accent,#e5e7eb)}
+.card.purple{ --accent:#7c3aed;} .card.blue{--accent:#2563eb;} .card.green{--accent:#16a34a;}
+.card.orange{--accent:#f59e0b;} .card.teal{--accent:#0d9488;} .card.rose{--accent:#e11d48;} .card.gray{--accent:#6b7280}
+
+/* Section banners (full panel width) */
+.section-bar{
+  margin:-12px -12px 12px -12px;
+  padding:12px 16px;
+  color:#fff;
+  font-weight:700;
+  text-align:center;
+  border-radius:12px 12px 0 0;
+  letter-spacing:.2px;
+}
+.bar-glance   { background:#1f2937; }  /* dark */
+.bar-stock    { background:#0ea5e9; }  /* cyan-blue */
+.bar-category { background:#7c3aed; }
+.bar-top      { background:#334155; }
+.bar-zero     { background:#dc2626; }
+.bar-mismatch { background:#f59e0b; }
+.bar-expiry   { background:#16a34a; }
+.bar-committed{ background:#0d9488; }
+.bar-details  { background:#4b5563; }
+
+/* Stock Check card headers full-width color */
+.stockcheck .card .title{
+  display:block;
+  margin:-12px -14px 10px -14px;
+  padding:10px 14px;
+  color:#fff;
+  border-radius:12px 12px 0 0;
+  background:#2563eb;
+}
+.stockcheck .card.blue  .title{background:#2563eb}
+.stockcheck .card.rose  .title{background:#e11d48}
+.stockcheck .card.teal  .title{background:#0d9488}
+.stockcheck .card.green .title{background:#16a34a}
+.stockcheck .card.gray  .title{background:#374151}
+
+.stockcheck, .stockcheck .row, .center, .centered-block { text-align:center; justify-content:center; align-items:center; }
+.stockcheck select{ text-align-last:center; }
+
+/* Tables */
+table{border-collapse:collapse;width:100%}
+th,td{padding:8px 10px;border-bottom:1px solid #f0f0f0;white-space:nowrap;text-align:center}
+th{color:#fff}
+
+.table-batches   thead th{background:#1f2937}
+.table-mismatch  thead th{background:#f59e0b}
+.table-expiry    thead th{background:#16a34a}
+.table-committed thead th{background:#0d9488}
+.table-zerostock thead th{background:#dc2626}
+.table-details   thead th{background:#374151}
+
+/* RED header + RED total row for Stock Check committed table */
+#lookupCommitted table thead th{ background:#dc2626 !important; }
+#lookupCommitted table tfoot th,
+#lookupCommitted table tfoot td{
+  background:#dc2626 !important;
+  color:#fff !important;
+  font-weight:700;
+}
+
+/* Batches total row sticky & visible */
+.table-batches tfoot th,
+.table-batches tfoot td{
+  background:#1f2937;
+  color:#fff;
+  font-weight:700;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  border-top: 2px solid #0b1220;
+}
+.t-right{text-align:right}
+
+/* Expiry pulse dot */
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:6px}
+.dotPulse{background:#ef4444;box-shadow:0 0 0 0 rgba(239,68,68,.7);animation:pulse 1.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.7)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
