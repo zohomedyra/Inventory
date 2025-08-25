@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inventory + Batch + Committed Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css?v=1.0"/>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
+  <script src="https://cdn.plot.ly/plotly-2.30.0.min.js" defer></script>
+
+  <!-- App JS -->
+  <script src="app.js?v=1.0" defer></script>
+</head>
+<body>
+  <header>
+    <h1>📦 Inventory + 🧾 Batch + 📑 Committed</h1>
+  </header>
+
+  <!-- KPI Cards -->
+  <section class="panel">
+    <div class="section-bar bar-glance">Total at a glance</div>
+    <div class="cards">
+      <div class="card"><div class="label">Total SKUs (Inventory)</div><div id="kpiTotalSKUs">–</div></div>
+      <div class="card"><div class="label">Total Stock On Hand</div><div id="kpiSOH">–</div></div>
+      <div class="card"><div class="label">Inventory Value</div><div id="kpiValue">–</div></div>
+      <div class="card"><div class="label">Mismatched SKUs</div><div id="kpiMismatch">–</div></div>
+    </div>
+  </section>
+
+  <!-- Stock Check -->
+  <section class="panel">
+    <div class="section-bar bar-stock">Stock Check</div>
+    <div style="margin:10px 0;text-align:center;">
+      <label>Category</label>
+      <select id="scCategory" onchange="rebuildSCProducts()"></select>
+      <label>Product (Sales Description)</label>
+      <select id="scProduct" onchange="updateStockCheck()"></select>
+      <div id="scProductSub" style="margin-top:4px;color:#666;font-size:12px;"></div>
+    </div>
+
+    <div class="cards">
+      <div class="card header-blue"><div class="label">Product</div><div id="scName">–</div></div>
+      <div class="card header-indigo"><div class="label">Stock On Hand</div><div id="scSOH">–</div></div>
+      <div class="card header-red"><div class="label">Committed Stock</div><div id="scCommitted">–</div></div>
+      <div class="card header-green"><div class="label">Available for Sale</div><div id="scAvail">–</div></div>
+      <div class="card header-darkgreen"><div class="label">Stock Value (SOH × Price)</div><div id="scValue">–</div></div>
+    </div>
+
+    <div id="committedTableWrap"></div>
+    <div id="batchTableWrap"></div>
+  </section>
+
+  <!-- Category-wise Stock Value -->
+  <section class="panel">
+    <div class="section-bar bar-category">Category-wise Stock Value</div>
+    <div id="chartCategoryValue" style="height:350px;"></div>
+  </section>
+
+  <!-- Expiry analysis -->
+  <section class="panel">
+    <div class="section-bar bar-expiry">Expiry analysis (expires in &lt; 11 months)</div>
+    <div id="expiryTableWrap"></div>
+  </section>
+
+  <!-- Raw inventory -->
+  <section class="panel">
+    <div class="section-bar bar-details">Details (first 2000 Inventory rows)</div>
+    <div style="margin:5px;">
+      <span class="muted">Filter by Category</span>
+      <select id="detailCat" onchange="renderDetails()"></select>
+    </div>
+    <div id="detailsTableWrap"></div>
+  </section>
+
+</body>
+</html>
